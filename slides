@@ -1,0 +1,50 @@
+from tkinter import *
+from PIL import ImageTk, Image
+
+width, height = 400, 300
+
+def shrink(img):
+    i_width, i_height = img.size
+    if i_width > width:
+        i_width = width
+        i_height = int(i_height*(width/i_width))
+        print(i_width, i_height)
+    return (i_width,i_height)
+    
+def previous:
+    
+    
+
+root = Tk()
+root.title("slides")
+width, height = 400, 300
+root.geometry(f"{width}x{height}")
+
+#a list of all images   a primitive but working method
+images = []
+im1 = Image.open(f"D:\Photos\pics\p1.jpg")
+im1.thumbnail(shrink(im1))
+img = ImageTk.PhotoImage(im1)
+im2 = Image.open(f"D:\Photos\pics\p2.jpg")
+im2.thumbnail(shrink(im2))
+img2 = ImageTk.PhotoImage(im2)
+im3 = Image.open(f"D:\Photos\pics\p3.jpg")
+im3.thumbnail(shrink(im3))
+img3 = ImageTk.PhotoImage(im3)
+
+'''  # another way using loop that is not working
+for i in range(1,4):
+    im = Image.open(f"D:\Photos\pics\p{i}.jpg")
+    im1.thumbnail(shrink(im1))
+    images.append(ImageTk.PhotoImage(im1))
+'''
+
+
+#label for images
+bilb = Label(image = img)
+bilb.pack()
+
+back = Button(root, text = '<<').pack()
+next = Button(root, text = '>>').pack()
+
+root.mainloop()
